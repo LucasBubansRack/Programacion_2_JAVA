@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class principal_7 {
 
-    public static void main(){
+    public static void main(String[] args){
 
         Scanner sc = new Scanner(System.in);
         int numJarcordiado = ThreadLocalRandom.current().nextInt(1, 101);;
