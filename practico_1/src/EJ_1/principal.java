@@ -51,6 +51,5 @@ public class principal {
         if (producto % 3 == 0) {
             System.out.println("El producto del Mayor por el Menor si es divisible por 3");
         }
-
     }
 }
