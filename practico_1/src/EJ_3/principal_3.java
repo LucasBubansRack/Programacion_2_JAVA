@@ -14,8 +14,11 @@ public class principal_3 {
         int n;
         int factorial = 1;
 
-        System.out.print("Ingrese un numero mayor o igual a 0: ");
-        n = sc.nextInt();
+        do {
+            System.out.print("Ingrese un numero mayor o igual a 0: ");
+            n = sc.nextInt();
+        }while (n < 0);
+
 
         for (int i = 1; i <= n ; i++) {
             factorial *= i;
