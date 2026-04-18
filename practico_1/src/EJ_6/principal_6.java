@@ -20,7 +20,10 @@ public class principal_6 {
         System.out.print("Ingrese un segundo numero: ");
         num2 = sc.nextInt();
 
-        for (int i = num1; i <= num2; i++) {
+        int inicio = Math.min(num1, num2);
+        int fin = Math.max(num1, num2);
+
+        for (int i = inicio; i <= fin; i++) {
             if (i % 5 == 0) {
                 suma += i;
             }
