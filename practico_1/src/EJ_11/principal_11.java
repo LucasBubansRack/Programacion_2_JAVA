@@ -23,16 +23,20 @@ public class principal_11 {
         System.out.print("Ingrese un numero entero binario: ");
         numBinario = sc.nextInt();
 
-        while (numBinario > 0){
-            int digito = numBinario % 10; // Ultimo digito
+        if (!String.valueOf(numBinario).matches("[01]+")) {
+            System.out.println("Error: solo se permiten 0 y 1");
+        }else {
+            while (numBinario > 0){
+                int digito = numBinario % 10; // Ultimo digito
 
-            numDecimal += digito * Math.pow(2, potencia);
+                numDecimal += digito * (int)Math.pow(2, potencia);
 
-            numBinario = numBinario / 10;  // Elimino el ultimo digito
-            potencia++;
+                numBinario = numBinario / 10;  // Elimino el ultimo digito
+                potencia++;
+            }
+
+            System.out.println(" ");
+            System.out.println("El binario a decimal es: " + numDecimal);
         }
-
-        System.out.println(" ");
-        System.out.println("El binario a decimal es: " + numDecimal);
     }
 }
