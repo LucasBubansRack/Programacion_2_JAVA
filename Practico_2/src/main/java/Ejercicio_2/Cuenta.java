@@ -17,6 +17,9 @@ public class Cuenta {
     private double tipoInteres;
     private double saldo;
 
+    public Cuenta() {
+    }
+
     public Cuenta(double tipoInteres, double saldoInicial) {
         this.tipoInteres = tipoInteres;
 
