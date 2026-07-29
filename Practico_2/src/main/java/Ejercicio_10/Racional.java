@@ -35,6 +35,97 @@ f) Devolver una representación String de un número Racional en formato de punt
 public class Racional {
 
 
+    private int numerador;
+    private int denominador;
 
+    public Racional() {
+        this.numerador = 0;
+        this.denominador = 1;
+    }
 
+    public Racional(int numerador, int denominador) {
+
+        if (denominador == 0)
+            throw new IllegalArgumentException("El denominador no puede ser cero.");
+        else{
+            this.numerador = numerador;
+            this.denominador = denominador;
+        }
+        simplificar();
+    }
+
+    // SUMA
+    public static Racional sumar(Racional r1, Racional r2){
+        int numerador = (r1.numerador * r2.denominador) + (r2.numerador * r1.denominador);
+        int denominador = r1.denominador * r2.denominador;
+
+        return new Racional(numerador, denominador);
+    }
+
+    // RESTA
+    public static Racional restar(Racional r1, Racional r2){
+        int numerador = (r1.numerador * r2.denominador) - (r2.numerador * r1.denominador);
+        int denominador = r1.denominador * r2.denominador;
+
+        return new Racional(numerador, denominador);
+    }
+
+    // MULTIPLICACIÓN
+    public static Racional multiplicar(Racional r1, Racional r2){
+        int numerador = r1.numerador * r2.numerador;
+        int denominador = r1.denominador * r2.denominador;
+
+        return new Racional(numerador, denominador);
+    }
+
+    // DIVISION
+    public static Racional dividir(Racional r1, Racional r2){
+        if (r2.numerador == 0)
+            throw new ArithmeticException("No se puede dividir por cero.");
+
+        int numerador = r1.numerador * r2.denominador;
+        int denominador = r1.denominador * r2.numerador;
+
+        return new Racional(numerador, denominador);
+    }
+
+    // Representación a/b
+    @Override
+    public String toString() {
+        return numerador + "/" + denominador;
+    }
+
+    // Representación decimal
+    public String toDecimal(){
+        return String.valueOf((double) numerador / denominador);
+    }
+
+    // Representación decimal con precisión
+    public String toDecimal(int decimales){
+        return String.format("%." + decimales + "f", (double) numerador / denominador);
+    }
+
+    // Simplifica la fracción
+    private void simplificar(){
+        int mcd = calcularMCD(Math.abs(numerador), Math.abs(denominador));
+
+        numerador /= mcd;
+        denominador /= mcd;
+
+        // Mantener el signo en el numerador
+        if (denominador < 0){
+            numerador *= -1;
+            denominador *= -1;
+        }
+    }
+
+    // Maximo común divisor
+    private int calcularMCD(int a, int b){
+        while (b != 0){
+            int aux = b;
+            b = a % b;
+            a = aux;
+        }
+        return a;
+    }
 }
