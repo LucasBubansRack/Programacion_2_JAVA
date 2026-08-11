@@ -8,16 +8,16 @@ package Ejercicio_2;
 
 import java.util.ArrayList;
 
-public class Iterator {
+public class Alumno {
 
     private int legajo;
     private String nombre;
     private float promedio;
 
-    public Iterator() {
+    public Alumno() {
     }
 
-    public Iterator(int legajo, String nombre, float promedio) throws Exception{
+    public Alumno(int legajo, String nombre, float promedio) throws Exception{
         if (legajo <= 0)
             throw new Exception("El legajo debe ser mayor a 0");
 
@@ -59,17 +59,17 @@ public class Iterator {
         this.promedio = promedio;
     }
 
-    public void alta(ArrayList<Iterator> alumnos) throws Exception{
+    public void alta(ArrayList<Alumno> alumnos) throws Exception{
         if (buscar(alumnos, legajo) != null)
             throw new Exception("Ya existe un alumno con ese legajo.");
         alumnos.add(this);
     }
 
-    public void baja(ArrayList<Iterator> alumnos) throws Exception{
-        java.util.Iterator<Iterator> iterator = alumnos.iterator();
+    public void baja(ArrayList<Alumno> alumnos, int legajo) throws Exception{
+        java.util.Iterator<Alumno> iterator = alumnos.iterator();
 
         while (iterator.hasNext()){
-            Iterator alumno = iterator.next();
+            Alumno alumno = iterator.next();
 
             if (alumno.getLegajo() == legajo){
                 iterator.remove();
@@ -79,11 +79,11 @@ public class Iterator {
         throw new Exception("No existe un alumno con ese legajo.");
     }
 
-    public Iterator buscar(ArrayList<Iterator> alumnos, int legajo) {
-        java.util.Iterator<Iterator> iterator = alumnos.iterator();
+    public Alumno buscar(ArrayList<Alumno> alumnos, int legajo) throws Exception{
+        java.util.Iterator<Alumno> iterator = alumnos.iterator();
 
         while (iterator.hasNext()){
-            Iterator alumno = iterator.next();
+            Alumno alumno = iterator.next();
 
             if (alumno.getLegajo() == legajo)
                 return alumno;
@@ -91,8 +91,8 @@ public class Iterator {
         return null;
     }
 
-    public void recorrer(ArrayList<Iterator> alumnos) {
-        java.util.Iterator<Iterator> iterator = alumnos.iterator();
+    public void recorrer(ArrayList<Alumno> alumnos) {
+        java.util.Iterator<Alumno> iterator = alumnos.iterator();
 
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
