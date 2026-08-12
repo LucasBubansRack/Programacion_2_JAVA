@@ -1,97 +1,61 @@
 package Ejercicio_1;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Principal {
+
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-        Scanner num = new Scanner(System.in);
+        try {
 
-        ListaAlumnos alumnos = new ListaAlumnos();
-        ListaEnteros enteros = new ListaEnteros();
+            // LISTA DE ENTEROS
 
-        int opcion;
+            ArrayList<Integer> numeros = new ArrayList<>();
+            Enteros enteros = new Enteros();
 
-        do {
-            System.out.println("\n===== MENU =====");
-            System.out.println("1- Alta entero");
-            System.out.println("2- Baja entero");
-            System.out.println("3- Buscar entero");
-            System.out.println("4- Recorrer enteros");
-            System.out.println("5- Alta alumno");
-            System.out.println("6- Baja alumno");
-            System.out.println("7- Buscar alumno");
-            System.out.println("8- Recorrer alumnos");
-            System.out.println("0- Salir");
-            System.out.print("\nOpcion: ");
+            enteros.altaEntero(numeros, 10);
+            enteros.altaEntero(numeros, 20);
+            enteros.altaEntero(numeros, 30);
 
-            opcion = num.nextInt();
+            System.out.println("LISTA DE ENTEROS:");
+            enteros.recorrerNumeros(numeros);
 
-            if (opcion < 0 || opcion > 8)
-                System.out.println("Error.Entrada invalida.");
+            System.out.println("\nBUSQUEDA:");
+            System.out.println(enteros.buscarNumero(numeros, 20));
 
-            try{
-                switch (opcion){
-                    case 1:
-                        System.out.print("Número: ");
-                        enteros.altaEntero(num.nextInt());
-                        break;
+            enteros.bajaNumero(numeros, 20);
 
-                    case 2:
-                        System.out.print("Número: ");
-                        enteros.bajaNumero(num.nextInt());
-                        break;
+            System.out.println("\nDESPUES DE LA BAJA:");
+            enteros.recorrerNumeros(numeros);
 
-                    case 3:
-                        System.out.print("Numero: ");
-                        System.out.println("Posicion: " + enteros.buscarNumero(num.nextInt()));
-                        break;
 
-                    case 4:
-                        enteros.recorrerNumeros();
-                        break;
+            // LISTA DE ALUMNOS
 
-                    case 5:
-                        System.out.print("Legajo: ");
-                        int legajo = num.nextInt();
+            ArrayList<Alumno> alumnos = new ArrayList<>();
 
-                        System.out.print("Nombre: ");
-                        String nombre = sc.nextLine();
+            Alumno alumno = new Alumno(1, "Juan", 8.5f);
 
-                        System.out.print("Promedio: ");
-                        double prom = num.nextDouble();
+            alumno.altaAlumno(alumnos);
+            new Alumno(2, "Pedro", 7.2f).altaAlumno(alumnos);
+            new Alumno(3, "Maria", 9.1f).altaAlumno(alumnos);
 
-                        alumnos.altaAlumno(new Alumno(legajo, nombre, prom));
-                        break;
+            System.out.println("\nLISTA DE ALUMNOS:");
+            alumno.recorrer(alumnos);
 
-                    case 6:
-                        System.out.print("Legajo: ");
-                        alumnos.bajaAlumno(sc.nextInt());
-                        break;
+            System.out.println("\nBUSQUEDA:");
+            Alumno encontrado = alumno.buscarAlumno(alumnos, 2);
 
-                    case 7:
-                        System.out.print("Legajo: ");
-                        System.out.println(alumnos.buscarAlumno(num.nextInt()));
-                        break;
+            if (encontrado != null)
+                System.out.println(encontrado);
 
-                    case 8:
-                        alumnos.recorrerAlumnos();
-                        break;
+            alumno.bajaAlumno(alumnos, 2);
 
-                    case 0:
-                        System.out.println("Programa finalizado.");
-                        break;
+            System.out.println("\nDESPUES DE LA BAJA:");
+            alumno.recorrer(alumnos);
 
-                    default:
-                        System.out.println("Opción incorrecta.");
-                }
+        } catch (Exception e) {
 
-            } catch (Exception e) {
-                throw new RuntimeException(e.getMessage());
-            }
-        }while (opcion != 0);
-
-        num.close();
+            System.out.println(e.getMessage());
+        }
     }
 }
