@@ -15,6 +15,8 @@ public class Rectangulo {
     private float anchura;
 
     public Rectangulo() {
+        this.longitud = 1;
+        this.anchura = 1;
     }
 
     public Rectangulo(float longitud, float anchura) {

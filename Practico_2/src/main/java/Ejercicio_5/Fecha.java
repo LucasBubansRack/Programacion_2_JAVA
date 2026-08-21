@@ -66,7 +66,24 @@ public class Fecha {
     }
 
     public void setDia(int dia) {
-        if (dia >= 1 && dia <= 31) {
+
+        int maximo;
+
+        switch (mes){
+            case 2:
+                maximo = 28;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                maximo = 30;
+                break;
+            default:
+                maximo = 31;
+        }
+
+        if (dia >= 1 && dia <= maximo) {
             this.dia = dia;
         } else {
             this.dia = 1;

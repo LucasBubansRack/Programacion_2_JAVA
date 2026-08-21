@@ -38,15 +38,31 @@ public class VentasEmpresa {
         System.out.println("\nIngrese las notas de venta.");
         System.out.println("Para finalizar ingrese 0 como numero de vendedor.");
 
-        while (true){
+        while (true) {
             System.out.print("\nNumero de vendedor (1-4, 0 para finalizar): ");
             vendedor = entrada.nextInt();
+
+            if (vendedor < 0 || vendedor > 4) {
+                try {
+                    throw new Exception("Numero de vendedor erróneo.");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
 
             if (vendedor == 0)
                 break;
 
             System.out.print("Numero de producto: ");
             producto = entrada.nextInt();
+
+            if (producto < 1 || producto > 5) {
+                try {
+                    throw new Exception("Numero de producto erroneo. solo se admite de (1 a 5).");
+                }catch (Exception e){
+                    throw new RuntimeException(e);
+                }
+            }
 
             System.out.print("Importe vendido: ");
             importe = entrada.nextDouble();

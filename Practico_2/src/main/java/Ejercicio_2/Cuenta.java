@@ -47,7 +47,7 @@ public class Cuenta {
     }
 
     public void retirarDinero(double monto){
-        if (monto <= saldo)
+        if (monto <= saldo && monto > 0)
             saldo -= monto;
         else
             System.out.println("El monto a retirar exede el saldo de la cuenta.");
